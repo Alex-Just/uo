@@ -1,7 +1,6 @@
 sudo: true
-services: postgresql
 addons:
-  postgresql: "9.6"
+  postgresql: "9.5"
 env:
   global:
   - DJANGO_SETTINGS_MODULE="config.settings.test"
