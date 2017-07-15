@@ -11,7 +11,9 @@ def update_site_forward(apps, schema_editor):
     """Set site domain and name."""
 
     # Load operating system environment variables and then prepare to use them
-    env = settings.env
+    env = settings.ENV
+    env_file = str(settings.ROOT_DIR.path('.env'))
+    env.read_env(env_file)
 
     Site = apps.get_model('sites', 'Site')
     Site.objects.update_or_create(
