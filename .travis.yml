@@ -1,4 +1,10 @@
 sudo: true
+services: postgresql
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE="config.settings.test"
+  - PYTHONPATH="/home/travis/build/Alex-Just/uo"
+  - PIP_USE_MIRRORS=true
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
@@ -9,3 +15,6 @@ before_install:
 language: python
 python:
   - "3.6.1"
+install:
+  - pip install -r backend/requirements/test.txt
+script: manage.py test
