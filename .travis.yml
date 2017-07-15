@@ -17,4 +17,4 @@ python:
   - "3.6.1"
 install:
   - pip install -r backend/requirements/test.txt
-script: manage.py test
+script: python3 backend/manage.py test
