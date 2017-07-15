@@ -1,4 +1,5 @@
 sudo: true
+services: postgresql
 addons:
   postgresql: "9.6"
 env:
