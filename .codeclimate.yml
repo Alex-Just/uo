@@ -20,4 +20,6 @@ engines:
 exclude_paths:
 - "**/tests/**"
 - "**/coverage/**"
+- "**/internals/**"
+- "**/server/**"
 - "**/test_**"
