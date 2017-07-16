@@ -20,6 +20,6 @@ install:
   - pip install -r backend/requirements/test.txt
   - pip install coveralls
 script:
-  - coverage run backend/manage.py test backend
+  - coverage run backend/manage.py test backend/apps
 after_success:
   - coveralls
