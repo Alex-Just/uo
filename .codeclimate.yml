@@ -18,6 +18,6 @@ engines:
       - python:
       - javascript:
 exclude_paths:
-- "tests/"
-- "coverage/"
-- "test_**"
+- "**/tests/**"
+- "**/coverage/**"
+- "**/test_**"
