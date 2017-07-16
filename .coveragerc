@@ -1,5 +1,5 @@
 [run]
-include = backend/backend/*
+include = backend/apps/*
 omit = *migrations*, *tests*
 plugins =
     django_coverage_plugin
