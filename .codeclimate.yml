@@ -5,7 +5,7 @@ engines:
     enabled: true
   fixme:
     enabled: true
-   nodesecurity:
+  nodesecurity:
     enabled: true
   pep8:
     enabled: true
