@@ -51,9 +51,7 @@ htmlcov
 !.idea/vcs.xml
 !.idea/webResources.xml
 
-
 # Vim
-
 *~
 *.swp
 *.swo
@@ -71,9 +69,14 @@ node_modules/
 # User-uploaded media
 backend/media/
 
-
-
 staticfiles/
-
 .cache/
 
+### Frontend ###
+# Don't check auto-generated stuff into git
+coverage
+build
+stats.json
+
+# Cruft
+npm-debug.log
