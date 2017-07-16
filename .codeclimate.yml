@@ -23,3 +23,7 @@ exclude_paths:
 - "**/internals/**"
 - "**/server/**"
 - "**/test_**"
+ratings:
+   paths:
+   - "backend/apps/**.py"
+   - "frontend/app/**"
