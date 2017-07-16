@@ -74,9 +74,9 @@ staticfiles/
 
 ### Frontend ###
 # Don't check auto-generated stuff into git
-coverage
 build
 stats.json
 
 # Cruft
 npm-debug.log
+/frontend/coverage/
