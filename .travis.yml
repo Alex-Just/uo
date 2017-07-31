@@ -28,9 +28,8 @@ matrix:
 
     - language: node_js
       node_js: 8.2.1
-      before_script:
-        - cd ./frontend
       install:
+        - cd ./frontend
         - yarn install
         - npm install -g codeclimate-test-reporter
       script:
