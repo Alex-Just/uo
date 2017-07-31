@@ -34,8 +34,8 @@ matrix:
         - sh -e /etc/init.d/xvfb start
       before_script:
         - cd ./frontend
-        - npm install -g codeclimate-test-reporter
       install:
+        - npm install -g codeclimate-test-reporter
         - npm install
       script:
         - node ./internals/scripts/generate-templates-for-linting
