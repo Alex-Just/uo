@@ -35,7 +35,8 @@ matrix:
       before_script:
         - cd ./frontend
         - npm install -g codeclimate-test-reporter
-      install: "npm install"
+      install:
+        - npm install
       script:
         - node ./internals/scripts/generate-templates-for-linting
         - npm run test
