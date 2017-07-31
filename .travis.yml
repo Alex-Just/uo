@@ -31,8 +31,8 @@ matrix:
       before_script:
         - cd ./frontend
       install:
-        - npm install -g codeclimate-test-reporter
         - npm install
+        - npm install -g codeclimate-test-reporter
       script:
         - npm test
       after_success: 'CODECLIMATE_REPO_TOKEN=3455b0287bd547c722b875f94f2a617c69477d59b5f60cec76087d33d6253320 codeclimate-test-reporter < ./coverage/lcov.info'
