@@ -38,9 +38,7 @@ matrix:
         - npm install -g codeclimate-test-reporter
         - npm install
       script:
-        - node ./internals/scripts/generate-templates-for-linting
-        - npm run test
-        - npm run build
+        - npm test
       after_success: 'CODECLIMATE_REPO_TOKEN=3455b0287bd547c722b875f94f2a617c69477d59b5f60cec76087d33d6253320 codeclimate-test-reporter < ./coverage/lcov.info'
       cache:
         yarn: true
