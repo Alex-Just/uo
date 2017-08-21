@@ -36,6 +36,8 @@ matrix:
       app: u-o
       on:
         repo: Alex-Just/uo
+      strategy: git
+      before_deploy: cp -R ./backend/* .
   - language: node_js
     node_js: 8.2.1
     install:
