@@ -1,37 +1,48 @@
 sudo: true
 addons:
-  postgresql: "9.5"
+  postgresql: '9.5'
 env:
   global:
   - DJANGO_SETTINGS_MODULE="config.settings.test"
   - PYTHONPATH="/home/travis/build/Alex-Just/uo"
   - PIP_USE_MIRRORS=true
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-
+- sudo apt-get update -qq
+- sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev
+  xvfb
+- sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev
+  libwebp-dev
+- sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv
+  python-pip
+- sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev
+  libreadline-dev
+- sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev
+  wget curl llvm
 matrix:
   include:
-    - language: python
-      python: 3.6.2
-      install:
-        - pip install -r backend/requirements/test.txt
-        - pip install coveralls
-      script:
-        - coverage run backend/manage.py test backend
-      after_success:
-        - coveralls
-
-    - language: node_js
-      node_js: 8.2.1
-      install:
-        - cd ./frontend
-        - yarn install
-        - npm install -g codeclimate-test-reporter
-      script:
-        - npm test
-      after_success: 'CODECLIMATE_REPO_TOKEN=3455b0287bd547c722b875f94f2a617c69477d59b5f60cec76087d33d6253320 codeclimate-test-reporter < ./coverage/lcov.info'
+  - language: python
+    python: 3.6.2
+    install:
+    - pip install -r backend/requirements/test.txt
+    - pip install coveralls
+    script:
+    - coverage run backend/manage.py test backend
+    after_success:
+    - coveralls
+  - language: node_js
+    node_js: 8.2.1
+    install:
+    - cd ./frontend
+    - yarn install
+    - npm install -g codeclimate-test-reporter
+    script:
+    - npm test
+    after_success: CODECLIMATE_REPO_TOKEN=3455b0287bd547c722b875f94f2a617c69477d59b5f60cec76087d33d6253320
+      codeclimate-test-reporter < ./coverage/lcov.info
+    notifications: 
+  webhooks:
+  - https://api.netlify.com/build_hooks/599b4c3f7960b171da169ef3
+deploy:
+  provider: heroku
+  api_key:
+    secure: NAWZgGjMKlY9voAgtwnSSa/the2RfL6bX2V6hX2Yhqn6lqxMatpQ94lR4ZvgqEUU8NLp8Qqf4BOjNtFDFJrDXc/WiiVe1Lw/Ar2vsMIB+3QBo7AX4cbmj76J0xVQkVql7L24LnwtefAjlrx86DV/dvCjZ7C+w0dEzzhNG3xppX8Vhd4oYr+u4Ul9bAdzB+c+rrSR9u7vMZoLN3ItNi93Hw7FvPHu16HWXLt+1SiLbwUZ3ROKAnzg8vKnS6fhi+f7918qciLp6z6qCdaErg+MpEUx7fkcK1jhYi5ZPC9AOfIM40TV8SZ4Wa/lrOgTJDh18GmJXM65TRcpkixPaP5lBNicx/WbsjHMXduhPpQ5+HtYWEqPRegPEToGg+ca+4AmBYNO+ZgBPCzW4y0OMroEjSzjou09xkZLDJf5LoUDRuaXTo5m/MXgxUVEv1zDin0x97poMwju2hQ1S8Ui7YgRORhy3U5gIMDIIiG5ze7Kc7g88JyO7FAtmhG2DYvD9ukEFcpa4tctc8QbaCvruoCcDqgHtCK3glfAy10k3wwrDDa74ZaRlpGfLuInAuRme7cBPdkpgAXmcBncw3tHNleun8jKoMf0/wJoFgqJf7S5o3cvVARTS/sgPI7BQnpsqSA/vvQ3NMUa9SvS+Calg57iOr5CmyBrs55m30l6ifNJ8hg=
