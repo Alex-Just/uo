@@ -1,11 +1,13 @@
 sudo: true
 addons:
   postgresql: '9.5'
+
 env:
   global:
   - DJANGO_SETTINGS_MODULE="config.settings.test"
   - PYTHONPATH="/home/travis/build/Alex-Just/uo"
   - PIP_USE_MIRRORS=true
+
 before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev
@@ -18,8 +20,10 @@ before_install:
   libreadline-dev
 - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev
   wget curl llvm
+
 matrix:
   include:
+
   - language: python
     python: 3.6.2
     install:
@@ -32,7 +36,7 @@ matrix:
     deploy:
       provider: heroku
       api_key:
-        secure: Z5K45aQAYb/4stoBJzHFp0JdZF+M8HIuxvMbS6DeDLpA7PbiKMPZy1tZC5S4P2GVFdK2yNpfegqKIKmG6sP0pXZPTlk8VYeMYCfYsqJTWax2ycTP8gyTmzSMIZbAC2H3DvR8E5IQxj0jHgQxNvpPReXFXUpqM8px89rCi9LS6RW/UgT+hx+MwTnZdcqSRm+60UTpuJzOp8Lxf7YUvTjHiLzafdnwSYw5DAlVF1ayWQ0sSvJnfU6Jc/EwyEUBTLbogxnJR8z89nAZdPN/6ru60sA+mZefdRRWSM7jC5pZvO/voIhCiEJ8bqfjonkdciTes26QVpv0/sfVQEElkDb+jS2ElTCpf3pMQG8CYEqCCvD5bBQ1T+/s2btCDjoDLAObnHgPnRAfEa2ZgRdelk+De0YUvYluuaxIXiuhNN4ja7UKQx87BkMUleDNJSbrWvE7fqv4kTeydFNWsmdD5E50ZmAvWX/5+/HGPBa360qxWgoMYRXQcJ252kRWN/bbi+LnvoRCDK4ndUMM9jKISbllzMn9dNTP1a0WnL4buDZaBWuv7ko3BIkKDWvVsWssFmLew7LPHqGNWFnXGTDVKhDaXEEtv/NmbZ9aiK9qUihUoXZGD93QLAxvGzgq2wCWJyCHyeVB6gSNF5nHCjBkEVw22ap+ZuqUu3cO6WgZsdF/uVM=
+        secure: $HEROKU_ENCRYPTED_API_KEY
       app: u-o
       on:
         repo: Alex-Just/uo
@@ -52,8 +56,8 @@ matrix:
     - npm install -g codeclimate-test-reporter
     script:
     - npm test
-    after_success: CODECLIMATE_REPO_TOKEN=3455b0287bd547c722b875f94f2a617c69477d59b5f60cec76087d33d6253320
-      codeclimate-test-reporter < ./coverage/lcov.info
-    notifications:
+    after_success:
+    - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info
+    - netlify deploy -s $NETLIFY_API_ID -t $NETLIFY_PERSONAL_ACCESS_TOKEN -p ./build
     webhooks:
-    - https://api.netlify.com/build_hooks/599b4c3f7960b171da169ef3
+    - $NETLIFY_WEBHOOK_URL
