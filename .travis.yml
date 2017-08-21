@@ -58,7 +58,7 @@ matrix:
     - npm install -g netlify-cli
     script:
     - npm test
-    - npm build
+    - npm run build
     after_success:
     - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info
     - netlify deploy -s $NETLIFY_API_ID -t $NETLIFY_PERSONAL_ACCESS_TOKEN -p ./build
