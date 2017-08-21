@@ -54,11 +54,9 @@ matrix:
     - cd ./frontend
     - yarn install
     - npm install -g codeclimate-test-reporter
-    - npm install netlify-cli -g
+    - npm install -g netlify-cli
     script:
     - npm test
     after_success:
     - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info
     - netlify deploy -s $NETLIFY_API_ID -t $NETLIFY_PERSONAL_ACCESS_TOKEN -p ./build
-    webhooks:
-    - $NETLIFY_WEBHOOK_URL
