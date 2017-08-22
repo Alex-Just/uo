@@ -1,3 +1,5 @@
+from os.path import join
+
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
@@ -6,8 +8,10 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^$',
+        TemplateView.as_view(template_name=join(settings.TEMPLATES['DIRS'], 'pages/home.html')), name='home'),
+    url(r'^about/$',
+        TemplateView.as_view(template_name=join(settings.TEMPLATES['DIRS'], 'pages/about.html')), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
