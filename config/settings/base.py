@@ -46,17 +46,18 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',  # Form layouts
-    'allauth',  # registration
-    'allauth.account',  # registration
-    'allauth.socialaccount',  # registration
+    'crispy_forms',             # Form layouts
+    'allauth',                  # registration
+    'allauth.account',          # registration
+    'allauth.socialaccount',    # registration
+    'ckeditor',                 # web text editor
+    'ckeditor_uploader',        # web text editor
 ]
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
-    # custom users app
-    'apps.users.apps.UsersConfig',
-    # Your stuff: custom apps go here
+    'apps.users.apps.UsersConfig',      # Custom users app
+    'apps.book.apps.BookConfig',        # Book is a catalog of courses/lessons/blocks/tasks
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -273,3 +274,71 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 ALLOWED_HOSTS = ['0.0.0.0', ]
+
+# https://github.com/django-ckeditor/django-ckeditor#plugins
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'yourcustomtools', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
+            ]},
+            {'name': 'math', 'items': ['Mathjax', ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        # 'height': 291,
+        'width': '100%',
+        # 'filebrowserWindowHeight': 725,
+        # 'filebrowserWindowWidth': 940,
+        # 'toolbarCanCollapse': True,
+        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'mathjax',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_RESTRICT_BY_DATE = True
+CKEDITOR_BROWSE_SHOW_DIRS = True

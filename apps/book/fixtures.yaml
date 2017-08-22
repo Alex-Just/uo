@@ -1,0 +1,9 @@
+- model: book.topic
+  pk: 1
+  fields: {publish_date: ! '2017-08-22 11:37:25+00:00', pos: 9999, title: Test topic title}
+- model: book.lesson
+  pk: 1
+  fields: {publish_date: ! '2017-08-22 11:41:25+00:00', topic: 1, pos: 1, title: Test lesson title}
+- model: book.block
+  pk: 1
+  fields: {publish_date: ! '2017-08-22 11:42:12+00:00', lesson: 1, pos: 1, title: Test block title, text: Test block test}

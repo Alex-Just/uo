@@ -4,14 +4,12 @@
 # Verified bug on Python 3.5.1
 wheel==0.29.0
 
-
 # Bleeding edge Django
 django==1.10.7 # pyup: >=1.10,<1.11
 
 # Configuration
 django-environ==0.4.3
 whitenoise==3.3.0
-
 
 # Forms
 django-braces==1.11.0
@@ -30,7 +28,6 @@ argon2-cffi==16.3.0
 # Well-built with regular release cycles!
 django-allauth==0.32.0
 
-
 # Python-PostgreSQL Database Adapter
 psycopg2==2.7.3
 
@@ -44,8 +41,10 @@ pytz==2017.2
 django-redis==4.8.0
 redis>=2.10.5
 
-
-
-
-
 # Your custom requirements go here
+
+# The best web text editor for everyone
+django-ckeditor==5.3.0
+
+# YAML format support
+pyyaml==3.12

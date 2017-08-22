@@ -29,6 +29,9 @@ if settings.DEBUG:
         url(r'^403/$', default_views.permission_denied, kwargs={'exception': Exception('Permission Denied')}),
         url(r'^404/$', default_views.page_not_found, kwargs={'exception': Exception('Page not Found')}),
         url(r'^500/$', default_views.server_error),
+
+        # Required for using widget with file upload
+        url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     ]
     if 'debug_toolbar' in settings.INSTALLED_APPS:
         import debug_toolbar
