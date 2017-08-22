@@ -68,6 +68,7 @@ node_modules/
 
 # User-uploaded media
 backend/media/
+/backend/apps/media/
 
 staticfiles/
 .cache/
