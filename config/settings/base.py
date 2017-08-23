@@ -30,6 +30,8 @@ if READ_DOT_ENV_FILE:
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
+DJANGO_STATIC_FILES = 'django.contrib.staticfiles'
+
 DJANGO_APPS = [
     # Default Django apps:
     'django.contrib.auth',
@@ -37,7 +39,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    DJANGO_STATIC_FILES,
 
     # Useful template tags:
     # 'django.contrib.humanize',
@@ -62,6 +64,11 @@ LOCAL_APPS = [
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+# Disable Django’s static file handling and allow WhiteNoise to take over
+# http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
+# Add `whitenoise.runserver_nostatic` immediately above `django.contrib.staticfiles`
+# INSTALLED_APPS.insert(INSTALLED_APPS.index(DJANGO_STATIC_FILES), 'whitenoise.runserver_nostatic')
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
