@@ -39,7 +39,7 @@ INSTALLED_APPS += ['raven.contrib.django.raven_compat', ]
 WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
 
 # Add WhiteNoise to the MIDDLEWARE list, above all other middleware apart from Django’s SecurityMiddleware
-# http://whitenoise.evans.io/en/stable/#quickstart-for-django-apps
+# http://whitenoise.evans.io/en/stable/django.html#enable-whitenoise
 MIDDLEWARE.insert(MIDDLEWARE.index(SECURITY_MIDDLEWARE) + 1, WHITENOISE_MIDDLEWARE)
 
 RAVEN_MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware']
