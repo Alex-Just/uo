@@ -36,7 +36,7 @@ INSTALLED_APPS += ['raven.contrib.django.raven_compat', ]
 
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.io/
-WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+WHITENOISE_MIDDLEWARE = 'whitenoise.middleware.WhiteNoiseMiddleware'
 
 # Add WhiteNoise to the MIDDLEWARE list, above all other middleware apart from Django’s SecurityMiddleware
 # http://whitenoise.evans.io/en/stable/django.html#enable-whitenoise
