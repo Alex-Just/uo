@@ -65,8 +65,10 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
+SECURITY_MIDDLEWARE = 'django.middleware.security.SecurityMiddleware'
+
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    SECURITY_MIDDLEWARE,
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

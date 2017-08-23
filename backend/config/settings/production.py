@@ -29,6 +29,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # raven sentry client
 # See https://docs.sentry.io/clients/python/integrations/django/
 INSTALLED_APPS += ['raven.contrib.django.raven_compat', ]
@@ -36,10 +37,15 @@ INSTALLED_APPS += ['raven.contrib.django.raven_compat', ]
 # Use Whitenoise to serve static files
 # See: https://whitenoise.readthedocs.io/
 WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
-MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
+
+# Add WhiteNoise to the MIDDLEWARE list, above all other middleware apart from Django’s SecurityMiddleware
+# http://whitenoise.evans.io/en/stable/#quickstart-for-django-apps
+MIDDLEWARE.insert(MIDDLEWARE.index(SECURITY_MIDDLEWARE) + 1, WHITENOISE_MIDDLEWARE)
+
 RAVEN_MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware']
 MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
-# opbeat integration
+
+# Opbeat integration
 # See https://opbeat.com/languages/django/
 INSTALLED_APPS += ['opbeat.contrib.django', ]
 OPBEAT = {
