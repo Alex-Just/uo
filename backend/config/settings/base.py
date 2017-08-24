@@ -8,9 +8,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+# noinspection PyPackageRequirements
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (backend/config/settings/base.py - 3 = backend/)
+
+# noinspection PyUnresolvedReferences
 APPS_DIR = ROOT_DIR.path('apps')
 
 # Load operating system environment variables and then prepare to use them
@@ -24,6 +27,8 @@ if READ_DOT_ENV_FILE:
     # Operating System Environment variables have precedence over variables defined in the .env file,
     # that is to say variables from the .env files will only be used if not defined
     # as environment variables.
+
+    # noinspection PyUnresolvedReferences
     env_file = str(ROOT_DIR.path('.env'))
     print('Loading : {}'.format(env_file))
     env.read_env(env_file)
@@ -191,6 +196,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+# noinspection PyCallingNonCallable
 STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
@@ -329,7 +335,7 @@ CKEDITOR_CONFIGS = {
         'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML',
         'tabSpaces': 4,
         'extraPlugins': ','.join([
-            'uploadimage', # the upload image feature
+            'uploadimage',  # the upload image feature
             # your extra plugins here
             'div',
             'autolink',
