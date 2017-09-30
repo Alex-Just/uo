@@ -37,6 +37,9 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
+// Load bootstrap styles
+import '!!style-loader!css-loader!../vendor/css/bootstrap.min.css';
+
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -81,6 +84,7 @@ if (!window.Intl) {
   }))
     .then(() => Promise.all([
       import('intl/locale-data/jsonp/en.js'),
+      import('intl/locale-data/jsonp/ru.js'),
     ]))
     .then(() => render(translationMessages))
     .catch((err) => {
