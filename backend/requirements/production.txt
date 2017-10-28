@@ -22,4 +22,4 @@ raven==6.2.1
 
 # Opbeat agent for performance monitoring
 # -----------------------------------------
-opbeat==3.5.2
+opbeat==3.5.3
