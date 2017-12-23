@@ -3,10 +3,10 @@
 
 
 django-coverage-plugin==1.5.0
-coverage==4.4.1
+coverage==4.4.2
 
-flake8==3.4.1 # pyup: != 2.6.0
-django-test-plus==1.0.18
+flake8==3.5.0 # pyup: != 2.6.0
+django-test-plus==1.0.21
 factory-boy==2.9.2
 
 # pytest
