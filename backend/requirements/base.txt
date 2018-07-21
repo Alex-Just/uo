@@ -44,7 +44,7 @@ redis>=2.10.5
 # Your custom requirements go here
 
 # The best web text editor for everyone
-django-ckeditor==5.4.0
+django-ckeditor==5.6.1
 
 # YAML format support
 pyyaml==3.12
