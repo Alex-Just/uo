@@ -49,4 +49,4 @@ django-ckeditor==5.6.1
 # YAML format support
 pyyaml==3.13
 
-django-extensions==1.9.9
+django-extensions==2.1.0
